@@ -1,0 +1,11 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/bankDB
+    username: imoskalenko
+    password: password
+    driver-class-name: org.postgresql.Driver
+    initialization-mode: always
+    schema: classpath*:database/initDB.sql

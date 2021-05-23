@@ -1,0 +1,99 @@
+// Создание Кастомера отделом Саппорта
+
+POST http://localhost:8080/support/customers
+Content-Type: application/json
+
+{
+  "firstName": "Ivan",
+  "secondName": "Ivanov"
+}
+
+// Создание счета для Кастомера отделом Саппорта
+
+POST http://localhost:8080/support/customers/1/accounts
+Content-Type: application/json
+
+
+// Создание карты по счету самим Кастомером
+
+POST http://localhost:8080/customer/account/1/cards
+Content-Type: application/json
+
+// Подтверждение выпуска карты отделом Саппорта
+
+PUT http://localhost:8080/support/cards/1/confirm
+Content-Type: application/json
+
+
+// Запрос на пополнение карты от Кастомера
+
+PUT http://localhost:8080/customer/card/1/increase/7878878
+Content-Type: application/json
+
+// ПОдтверждение запроса на пополние от Саппорта
+
+PUT http://localhost:8080/support/increase/1/confirm
+Content-Type: application/json
+
+// Запрос на снятие денег Кастомером
+
+PUT http://localhost:8080/customer/card/1/decrease/898.898
+Content-Type: application/json
+
+
+// Подтверждение снятия денег отделом Саппорта
+
+PUT http://localhost:8080/support/decrease/1/confirm
+Content-Type: application/json
+
+// Получение баланса Кастомером
+
+GET http://localhost:8080/customer/account/1/balance
+Content-Type: application/json
+
+
+// Создание контрагента
+
+POST http://localhost:8080/counterparty
+Content-Type: application/json
+
+{
+  "description": "Apple"
+}
+
+// Запрос на пополнение баланса от Контрагента
+
+PUT http://localhost:8080/counterparty/account/2/increase/8989
+Content-Type: application/json
+
+// Подтверждение запроса на пополние от Саппорта
+
+PUT http://localhost:8080/support/increase/2/confirm
+Content-Type: application/json
+
+// Запрос на снятие денег от Контагента
+
+PUT http://localhost:8080/counterparty/account/2/decrease/909
+Content-Type: application/json
+
+
+// Подтверждение снятия денег отделом Саппорта
+
+PUT http://localhost:8080/support/decrease/2/confirm
+Content-Type: application/json
+
+// Получение баланса Контрагента
+
+GET http://localhost:8080/counterparty/account/2/balance
+Content-Type: application/json
+
+
+// Получение всех контрагентов
+
+GET http://localhost:8080/counterparty
+Content-Type: application/json
+
+// Получение всех карт Кастомера
+
+GET http://localhost:8080/customer/1/cards
+Content-Type: application/json
