@@ -31,7 +31,7 @@ class CounterpartyServiceTest {
     private CounterpartyDAO counterpartyDAO;
 
     @Before
-    public void setUp(){
+    public void setUp() {
 
         MockitoAnnotations.openMocks(this);
     }
@@ -89,8 +89,8 @@ class CounterpartyServiceTest {
         Assertions.assertEquals(3, counterparties.size());
     }
 
-    private Counterparty generateCounterparty(){
-        return  CounterpartyBuilder.create()
+    private Counterparty generateCounterparty() {
+        return CounterpartyBuilder.create()
                 .withId(1L)
                 .withDescription("Apple")
                 .withVersion(3L)

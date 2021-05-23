@@ -47,7 +47,7 @@ class InvoiceServiceTest {
     }
 
     @Test
-    void increaseInvoice(){
+    void increaseInvoice() {
         Account mockAccount = generateAccount();
 
         when(accountManager.getAccountById(1L)).thenReturn(Optional.of(mockAccount));
@@ -68,12 +68,12 @@ class InvoiceServiceTest {
     }
 
     @Test
-    void decreaseInvoiceWithBalanceException(){
+    void decreaseInvoiceWithBalanceException() {
         Account mockAccount = generateAccount();
 
         when(accountManager.getAccountById(1L)).thenReturn(Optional.of(mockAccount));
 
-        assertThatThrownBy(()->invoiceService.decreaseInvoice(1L, BigDecimal.valueOf(1000)))
+        assertThatThrownBy(() -> invoiceService.decreaseInvoice(1L, BigDecimal.valueOf(1000)))
                 .isInstanceOf(RuntimeException.class);
 
         verify(accountManager).getAccountById(1L);
@@ -81,7 +81,7 @@ class InvoiceServiceTest {
     }
 
     @Test
-    void decreaseInvoice(){
+    void decreaseInvoice() {
         Account mockAccount = generateAccount();
 
         when(accountManager.getAccountById(1L)).thenReturn(Optional.of(mockAccount));
@@ -101,7 +101,7 @@ class InvoiceServiceTest {
     }
 
     @Test
-    void getBalance(){
+    void getBalance() {
         Account mockAccount = generateAccount();
 
         when(accountManager.getAccountById(1L)).thenReturn(Optional.of(mockAccount));

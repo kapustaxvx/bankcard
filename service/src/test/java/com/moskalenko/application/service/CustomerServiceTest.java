@@ -103,7 +103,7 @@ class CustomerServiceTest {
     }
 
     @Test
-    void createAccountForCustomer(){
+    void createAccountForCustomer() {
         Customer mockCustomer = generateCustomer();
         AccountView mockAccountView = generateAccountView();
         Mockito.when(customerDAO.getCustomerById(1L)).thenReturn(Optional.ofNullable(mockCustomer));
