@@ -23,7 +23,7 @@ public class BankCardService {
     private final AccountManager accountManager;
 
     public BankCardService(BankCardDAO bankCardDAO, InvoiceService invoiceService,
-                            AccountManager accountManager) {
+                           AccountManager accountManager) {
         this.bankCardDAO = bankCardDAO;
         this.invoiceService = invoiceService;
         this.accountManager = accountManager;
@@ -31,7 +31,7 @@ public class BankCardService {
 
     public BankCard createBankCard(Long accountId) {
         final Account account = accountManager.getAccountById(accountId).orElse(null);
-        if (account == null){
+        if (account == null) {
             log.info("[{}] Аккаунта не существет", accountId);
             throw new RuntimeException("Аккаунта не существет");
         }
@@ -39,12 +39,12 @@ public class BankCardService {
         return bankCardDAO.createBankCard(accountId, cardNumber);
     }
 
-    public Optional<BankCard> getBankCardById(Long cardId){
+    public Optional<BankCard> getBankCardById(Long cardId) {
         return bankCardDAO.getBankCardById(cardId);
     }
 
-    public Optional<BankCardWithAccount> getBankCardWithAccount(Long cardId){
-        return  bankCardDAO.getBankCardWithAccount(cardId);
+    public Optional<BankCardWithAccount> getBankCardWithAccount(Long cardId) {
+        return bankCardDAO.getBankCardWithAccount(cardId);
     }
 
 
