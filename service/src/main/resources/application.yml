@@ -8,4 +8,3 @@ spring:
     password: password
     driver-class-name: org.postgresql.Driver
     initialization-mode: always
-    schema: classpath*:database/initDB.sql
