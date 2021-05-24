@@ -4,7 +4,7 @@ CREATE TABLE IF NOT EXISTS customers
     first_name VARCHAR(200) NOT NULL,
     second_name VARCHAR(200) NOT NULL,
     version BIGINT NOT NULL DEFAULT (0)
-);
+    );
 
 CREATE TABLE IF NOT EXISTS accounts
 (
@@ -13,13 +13,13 @@ CREATE TABLE IF NOT EXISTS accounts
     debit DECIMAL NOT NULL DEFAULT (0),
     credit DECIMAL NOT NULL DEFAULT (0),
     version BIGINT NOT NULL DEFAULT (0)
-);
+    );
 
 CREATE TABLE IF NOT EXISTS bank_card_statuses
 (
     id BIGSERIAL PRIMARY KEY,
     name VARCHAR(200) NOT NULL UNIQUE
-);
+    );
 
 CREATE TABLE IF NOT EXISTS bank_cards
 (
@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS bank_cards
     card_number VARCHAR(16) NOT NULL UNIQUE,
     status_id BIGINT REFERENCES bank_card_statuses(id),
     version BIGINT NOT NULL DEFAULT (0)
-);
+    );
 
 CREATE TABLE IF NOT EXISTS increase_invoices
 (
@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS increase_invoices
     account_id BIGINT REFERENCES accounts(id),
     amount DECIMAL NOT NULL,
     creation_date TIMESTAMP
-);
+    );
 
 CREATE TABLE IF NOT EXISTS decrease_invoices
 (
@@ -44,35 +44,35 @@ CREATE TABLE IF NOT EXISTS decrease_invoices
     account_id BIGINT REFERENCES accounts(id),
     amount DECIMAL NOT NULL,
     creation_date TIMESTAMP NOT NULL
-);
+    );
 
 CREATE TABLE IF NOT EXISTS unconfirmed_increases
 (
     increase_id BIGINT REFERENCES increase_invoices(id)
-);
+    );
 
 CREATE TABLE IF NOT EXISTS unconfirmed_decreases
 (
     decrease_id BIGINT REFERENCES decrease_invoices(id)
-);
+    );
 
 CREATE TABLE IF NOT EXISTS customer_accounts
 (
     customer_id BIGINT REFERENCES customers(id) NOT NULL,
     account_id BIGINT REFERENCES accounts(id) NOT NULL UNIQUE ,
     UNIQUE (customer_id, account_id)
-);
+    );
 
 CREATE TABLE IF NOT EXISTS counterparties
 (
     id BIGSERIAL PRIMARY KEY,
     description VARCHAR(200) NOT NULL UNIQUE,
     version BIGINT NOT NULL DEFAULT (0)
-);
+    );
 
 CREATE TABLE IF NOT EXISTS counterparty_accounts
 (
     counterparty_id BIGINT REFERENCES counterparties(id) NOT NULL,
     account_id BIGINT REFERENCES accounts(id) NOT NULL UNIQUE,
     UNIQUE (counterparty_id, account_id)
-);
+    );

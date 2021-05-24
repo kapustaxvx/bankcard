@@ -3,6 +3,7 @@ package com.moskalenko.application.dao;
 import com.moskalenko.api.beans.Counterparty;
 import com.moskalenko.api.beans.CounterpartyBuilder;
 import com.moskalenko.api.requests.CounterpartyDescriptionRequest;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -12,6 +13,8 @@ import org.springframework.transaction.annotation.Transactional;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Collection;
+import java.util.Map;
+import java.util.Optional;
 
 @Repository
 public class CounterpartyDAO {
@@ -50,6 +53,17 @@ public class CounterpartyDAO {
         jdbc.update(SQLInsertCounterpartiesAccount, paramsForCounterpartiesAccount);
 
         return jdbc.queryForObject(SQLCounterpartySelect, paramsForCounterpartiesAccount, new CounterpartyMapper());
+    }
+
+    public Optional<Counterparty> getCounterpartyById(Long id){
+        final String SQL = "SELECT id, description, version FROM counterparties " +
+                  "WHERE id = :id ";
+        final MapSqlParameterSource params = new MapSqlParameterSource("id", id);
+        try {
+        return Optional.ofNullable(jdbc.queryForObject(SQL, params, new CounterpartyMapper()));
+        } catch (EmptyResultDataAccessException e){
+            return Optional.empty();
+        }
     }
 
     public Collection<Counterparty> getCounterparties() {
